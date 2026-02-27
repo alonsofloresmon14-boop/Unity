@@ -1,0 +1,27 @@
+//solo se mueve hacia un lado sin frenar
+using UnityEngine;
+
+public class NPC : MonoBehaviour
+{
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        //NPC health
+        int health = 5;
+        //NPC Level
+        int level = 1;
+        //NPC Speed
+        public float speed = 1.2f;
+    }                                                   
+
+    // Update is called once per frame
+    void Update()
+    {
+        // 1. Registramos la posición actual del objeto
+        Vector3 newPosition = transform.position;
+        // 2. Sumamos la velocidad multiplicada por el tiempo entre frames
+        newPosition.x += speed * Time.deltaTime;
+        // 3. Actualizamos la posición del NPC con el nuevo valor
+        transform.position = newPosition;
+    }
+}
