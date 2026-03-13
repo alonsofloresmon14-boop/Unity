@@ -1,0 +1,33 @@
+using UnityEngine;
+
+public class Player : MonoBehaviour
+{
+    private int health = 10;
+
+    // 1. Campo para almacenar el número de monedas recolectadas
+    private int coins = 0; 
+
+    public GameObject fireballPrefab;
+    public Transform attackPoint;
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(fireballPrefab, attackPoint.position, attackPoint.rotation);
+        }
+    }
+
+    // 2. Método para aumentar el contador de monedas
+    public void CollectCoins()
+    {
+        coins++; // Aumenta en 1
+        print("Monedas recolectadas: " + coins);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        print("Player's health: " + health);
+    }
+}
