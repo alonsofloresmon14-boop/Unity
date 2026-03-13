@@ -1,0 +1,29 @@
+using UnityEngine;
+public class Fireball : MonoBehaviour
+{
+    public float speed = 10f;
+    void Start()
+    {
+        // Se destruye automáticamente en 3 segundos si no choca con nada
+        Destroy(gameObject, 3);
+    }
+    // El método adecuado para el movimiento constante es Update
+    void Update()
+    {
+        transform.position += transform.forward * speed * Time.deltaTime;
+    }
+    // El método adecuado para detectar el impacto es OnTriggerEnter
+    private void OnTriggerEnter(Collider other)
+    {
+        // Buscamos si el objeto con el que chocamos tiene el script Enemy
+        Enemy enemy = other.GetComponent<Enemy>();
+
+        if (enemy != null)
+        {
+            // Para destruir al enemigo, usamos Destroy y pasamos su gameObject
+            Destroy(enemy.gameObject);
+            // También destruimos la bola de fuego al impactar
+            Destroy(gameObject);
+        }
+    }
+}
