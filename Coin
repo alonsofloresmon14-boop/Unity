@@ -1,0 +1,20 @@
+using UnityEngine;
+
+public class Coin : MonoBehaviour
+{
+    // El método adecuado para detectar el contacto es OnTriggerEnter
+    private void OnTriggerEnter(Collider other)
+    {
+        // 1. Buscamos si quien tocó la moneda es el Jugador
+        Player player = other.GetComponent<Player>();
+
+        if (player != null)
+        {
+            // 2. Llamamos al método que creamos antes en la clase Player
+            player.CollectCoins();
+
+            // 3. Destruimos la moneda (el objeto que tiene este script)
+            Destroy(gameObject);
+        }
+    }
+}
